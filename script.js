@@ -14,8 +14,14 @@ function writePassword() {
 function generatePassword() {
   // prompt: what is the length?
   var size = window.prompt("How many characters would you like your password to be? Length must be between 8-128 characters.", "8");
-  console.log("size", size, typeof size);
+  size = Number.parseInt(size, 10);
+
   //    valid values are >=8 && <=128
+  if (size < 8 || size > 128) {
+    alert("Invalid selection. Password length must be between 8-128 characters.");
+    return "";
+  }
+  console.log("size", size, typeof size);
 
   // prompt: what character types to be included in password?
   //    lowercase
