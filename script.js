@@ -16,6 +16,11 @@ function generatePassword() {
   var size = window.prompt("How many characters would you like your password to be? Length must be between 8-128 characters.", "8");
   size = Number.parseInt(size, 10);
 
+  if (Number.isNaN(size)) {
+    alert("Invalid format. Password length must be a number between 8-128 characters.");
+    return "";
+  }
+
   //    valid values are >=8 && <=128
   if (size < 8 || size > 128) {
     alert("Invalid selection. Password length must be between 8-128 characters.");
@@ -42,7 +47,17 @@ function generatePassword() {
 
   // when each prompt is answered, input should be validated and at least one character must be selected
 
-  // generate a password
+  // generate a password:
+  //    size: 8 -> ########, leading number must be nonzero
+  //    lowercase: if true, at least one character should be a lowercase letter
+  //               if false, all letters should be uppercase
+  //    uppercase: if true, at least one character should be an uppercase letter
+  //               if false, all letters should be lowercase
+  //    numeric:   if true, at least one character should be a number
+  //               if false, no numbers used
+  //    special:   if true, at least one character should be special
+  //               if false, no special characters used
+  //                " !"#$ %& '()*+,-./:;<=>?@[\]^_`{|}~"
 
 
 
