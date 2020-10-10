@@ -45,6 +45,12 @@ function generatePassword() {
   var special = confirm("Click OK to include a special character in your password.");
   console.log("special", special, typeof special)
 
+  if (!lowercase, !uppercase, !numeric, !special) {
+    alert("Invalid selection. Password must contain at least one of the prompted characters. Please make your selections again.");
+    generatePassword();
+  }
+
+
   var numericCharacters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   var specialCharacters = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "^", "_", "{", "|", "}", "~"];
   var uppercaseLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
@@ -53,19 +59,19 @@ function generatePassword() {
 
   var generated = "";
 
-
-  var passwordLength = size
-  for (var i = 0; i < passwordLength; i++) {
+  // creates password of selected length
+  for (var i = 0; i < size; i++) {
     var allIndex = Math.floor(Math.random() * charCombined.length);
     generated = generated + charCombined[allIndex];
   }
 
+  // if user does not want a lowercase letter, exclude lowercaseLetters
+  if (!lowercase) {
+    var charCombined = charCombined.filter(el => !lowercaseLetters.includes(el));
+    console.log(charCombined);
+  }
 
-  // // if user chooses to include a lowercase letter, choose a random lowercase letter
-  // if (lowercase) {
-  //   var lowercaseIndex = Math.floor(Math.random() * lowercaseLetters.length);
-  //   generated = generated + lowercaseLetters[lowercaseIndex];
-  // }
+
 
   // // if user chooses to include an uppercase letter, choose a random uppercase letter
   // if (uppercase) {
