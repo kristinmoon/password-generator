@@ -45,10 +45,51 @@ function generatePassword() {
   var special = confirm("Click OK to include a special character in your password.");
   console.log("special", special, typeof special)
 
+  var allDigits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  var specialCharacters = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "^", "_", "{", "|", "}", "~"];
+  var uppercaseLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+  var lowercaseLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+  var generated = "";
+
+
+  // if user chooses to include a lowercase letter, choose a random lowercase letter
+  if (lowercase) {
+    var lowercaseIndex = Math.floor(Math.random() * lowercaseLetters.length);
+    generated = generated + lowercaseLetters[lowercaseIndex];
+    //else
+    // ....
+  }
+
+  // if user chooses to include an uppercase letter, choose a random uppercase letter
+  if (uppercase) {
+    var uppercaseIndex = Math.floor(Math.random() * uppercaseLetters.length);
+    generated = generated + uppercaseLetters[uppercaseIndex];
+    //else
+    // ....
+  }
+
+  // if user chooses to include a number, choose a random number
+  if (numeric) {
+    var allDigitsIndex = Math.floor(Math.random() * allDigits.length);
+    generated = generated + allDigits[allDigitsIndex];
+    //else
+    // ....
+  }
+
+  // if user chooses to include a special character, choose a random special character
+  if (special) {
+    var specialIndex = Math.floor(Math.random() * specialCharacters.length);
+    generated = generated + specialCharacters[specialIndex];
+    //else
+    // ....
+  }
+
+
   // when each prompt is answered, input should be validated and at least one character must be selected
 
   // generate a password:
-  //    size: 8 -> ########, leading number must be nonzero
+  //    size: 8 -> ########, leading number must be one of the nonZeroDigits
   //    lowercase: if true, at least one character should be a lowercase letter
   //               if false, all letters should be uppercase
   //    uppercase: if true, at least one character should be an uppercase letter
@@ -61,7 +102,14 @@ function generatePassword() {
 
 
 
-  return 0;
+
+
+
+
+
+  // convert (Jason's) generated to a number
+  //  generated = Number.parseInt(generated, 10);
+  return generated;
 }
 
 // Add event listener to generate button
