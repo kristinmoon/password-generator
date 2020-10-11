@@ -18,20 +18,20 @@ function push(fromArray, toArray) {
 
 function generatePassword() {
   // prompt: what is the length?
-  var size = window.prompt("How many characters would you like your password to be? Length must be between 8-128 characters.", "8");
-  size = Number.parseInt(size, 10);
+  var length = window.prompt("How many characters would you like your password to be? Length must be between 8-128 characters.", "8");
+  length = Number.parseInt(length, 10);
 
-  if (Number.isNaN(size)) {
+  if (Number.isNaN(length)) {
     alert("Invalid format. Password length must be a number between 8-128 characters. Please start over.");
     return "";
   }
 
   // valid password values are >=8 && <=128
-  if (size < 8 || size > 128) {
+  if (length < 8 || length > 128) {
     alert("Invalid selection. Password length must be between 8-128 characters.");
     generatePassword();
   }
-  console.log("size", size, typeof size);
+  console.log("length", length, typeof length);
 
   // prompt: what character types to be included in password?
   //    lowercase
@@ -91,7 +91,7 @@ function generatePassword() {
   // create password of selected length
   x = Number.parseInt(generated.length, 10);
 
-  for (var i = 0; i < (size - x); i++) {
+  for (var i = 0; i < (length - x); i++) {
     var allIndex = Math.floor(Math.random() * charset.length);
     generated = generated + charset[allIndex];
   }
