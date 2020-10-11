@@ -10,6 +10,12 @@ function writePassword() {
 
 }
 
+function push(fromArray, toArray) {
+  for (i = 0, len = fromArray.length; i < len; i++) {
+    toArray.push(fromArray[i]);
+  }
+  return toArray;
+};
 
 
 function generatePassword() {
@@ -28,7 +34,6 @@ function generatePassword() {
     return "";
   }
   console.log("size", size, typeof size);
-
   // prompt: what character types to be included in password?
   //    lowercase
   var lowercase = confirm("Click OK to include a lowercase character in your password.");
@@ -46,7 +51,7 @@ function generatePassword() {
   var special = confirm("Click OK to include a special character in your password.");
   console.log("special", special, typeof special)
 
-  if (!lowercase, !uppercase, !numeric, !special) {
+  if (!lowercase && !uppercase && !numeric && !special) {
     alert("Invalid selection. Password must contain at least one of the prompted characters. Please make your selections again.");
     generatePassword();
   }
@@ -60,20 +65,31 @@ function generatePassword() {
   var generated = "";
   var charset = [];
 
-  // // creates password of selected length
-  // for (var i = 0; i < size; i++) {
-  //   var allIndex = Math.floor(Math.random() * charset.length);
-  //   generated = generated + charset[allIndex];
-  // }
+  // charset array
 
-  //empty charset array
-  while (numericCharacters.length) {
-    var current = numericCharacters.pop();
-    if (!numeric) {
-      continue;
-    }
-    charset.push(current);
+  if (lowercase) {
+    push(lowercaseLetters, charset);
   }
+
+  if (uppercase) {
+    push(uppercaseLetters, charset);
+  }
+
+  if (numeric) {
+    push(numericCharacters, charset);
+  }
+
+  if (special) {
+    push(specialCharacters, charset);
+  }
+
+
+  //  creates password of selected length (initialize)
+  for (var i = 0; i < size; i++) {
+    var allIndex = Math.floor(Math.random() * charset.length);
+    generated = generated + charset[allIndex];
+  }
+
 
   // // if user wants lowercase letters, add lowercaseLetters
   // if (lowercase) {
