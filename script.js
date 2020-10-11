@@ -26,7 +26,7 @@ function generatePassword() {
     alert("Invalid format. Password length must be a number between 8-128 characters.");
     return "";
   }
-  debugger;
+
   //    valid values are >=8 && <=128
   if (size < 8 || size > 128) {
     alert("Invalid selection. Password length must be between 8-128 characters.");
@@ -63,7 +63,7 @@ function generatePassword() {
 
   var generated = "";
   var charset = [];
-  debugger;
+
   // charset array
   if (lowercase) {
     var lowercaseIndex = Math.floor(Math.random() * lowercaseLetters.length);
@@ -89,9 +89,11 @@ function generatePassword() {
     push(specialCharacters, charset);
   }
 
+  x = Number.parseInt(generated.length, 10);
 
+  debugger;
   //  creates password of selected length (initialize)
-  for (var i = 0; i < size - 4; i++) {
+  for (var i = 0; i < (size - x); i++) {
     var allIndex = Math.floor(Math.random() * charset.length);
     generated = generated + charset[allIndex];
   }
