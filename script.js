@@ -7,7 +7,6 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 function push(fromArray, toArray) {
@@ -27,11 +26,11 @@ function generatePassword() {
     alert("Invalid format. Password length must be a number between 8-128 characters.");
     return "";
   }
-
+  debugger;
   //    valid values are >=8 && <=128
   if (size < 8 || size > 128) {
     alert("Invalid selection. Password length must be between 8-128 characters.");
-    return "";
+    generatePassword();
   }
   console.log("size", size, typeof size);
   // prompt: what character types to be included in password?
@@ -60,32 +59,39 @@ function generatePassword() {
   var specialCharacters = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "^", "_", "{", "|", "}", "~"];
   var uppercaseLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
   var lowercaseLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-  var charCombined = [].concat(numericCharacters, specialCharacters, uppercaseLetters, lowercaseLetters);
+  // var charCombined = [].concat(numericCharacters, specialCharacters, uppercaseLetters, lowercaseLetters);
 
   var generated = "";
   var charset = [];
-
+  debugger;
   // charset array
-
   if (lowercase) {
+    var lowercaseIndex = Math.floor(Math.random() * lowercaseLetters.length);
+    generated = generated + lowercaseLetters[lowercaseIndex];
     push(lowercaseLetters, charset);
   }
 
   if (uppercase) {
+    var uppercaseIndex = Math.floor(Math.random() * uppercaseLetters.length);
+    generated = generated + uppercaseLetters[uppercaseIndex];
     push(uppercaseLetters, charset);
   }
 
   if (numeric) {
+    var numericIndex = Math.floor(Math.random() * numericCharacters.length);
+    generated = generated + numericCharacters[numericIndex];
     push(numericCharacters, charset);
   }
 
   if (special) {
+    var specialIndex = Math.floor(Math.random() * specialCharacters.length);
+    generated = generated + specialCharacters[specialIndex];
     push(specialCharacters, charset);
   }
 
 
   //  creates password of selected length (initialize)
-  for (var i = 0; i < size; i++) {
+  for (var i = 0; i < size - 4; i++) {
     var allIndex = Math.floor(Math.random() * charset.length);
     generated = generated + charset[allIndex];
   }
