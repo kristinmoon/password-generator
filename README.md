@@ -4,10 +4,11 @@ This Password Generator is an application that an employee can use to generate a
 ## Deployment
 Password generator is published at https://kristinmoon.github.io/password-generator/
 
-<iframe src="https://drive.google.com/file/d/1EpR2CXWf_Yn_386j8dFQrBUqcC0s4iW6/preview" width="320" height="240"></iframe>
+
+<img src="./password-generator.png" alt="portfolio generator screenshot" />
 
 ## Author
-JS Code written by Kristin Moon
+JS Code written by <a href="https://kristinmoon.github.io/portfolio">Kristin Moon</a>
 
 ## Acknowledgements
 Thank you to Jason Whitted for taking the time to break down his Intro to JavaScript into easy-to-digest pieces and for the hours of supplemental video content he created.
