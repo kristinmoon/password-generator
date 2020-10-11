@@ -1,4 +1,3 @@
-// Assignment code here
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
@@ -23,16 +22,17 @@ function generatePassword() {
   size = Number.parseInt(size, 10);
 
   if (Number.isNaN(size)) {
-    alert("Invalid format. Password length must be a number between 8-128 characters.");
+    alert("Invalid format. Password length must be a number between 8-128 characters. Please start over.");
     return "";
   }
 
-  //    valid values are >=8 && <=128
+  // valid password values are >=8 && <=128
   if (size < 8 || size > 128) {
     alert("Invalid selection. Password length must be between 8-128 characters.");
     generatePassword();
   }
   console.log("size", size, typeof size);
+
   // prompt: what character types to be included in password?
   //    lowercase
   var lowercase = confirm("Click OK to include a lowercase character in your password.");
@@ -59,12 +59,11 @@ function generatePassword() {
   var specialCharacters = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "^", "_", "{", "|", "}", "~"];
   var uppercaseLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
   var lowercaseLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-  // var charCombined = [].concat(numericCharacters, specialCharacters, uppercaseLetters, lowercaseLetters);
 
   var generated = "";
   var charset = [];
 
-  // charset array
+  // if true, add one character to the password and add array to charset array
   if (lowercase) {
     var lowercaseIndex = Math.floor(Math.random() * lowercaseLetters.length);
     generated = generated + lowercaseLetters[lowercaseIndex];
@@ -89,67 +88,14 @@ function generatePassword() {
     push(specialCharacters, charset);
   }
 
+  // create password of selected length
   x = Number.parseInt(generated.length, 10);
 
-  debugger;
-  //  creates password of selected length (initialize)
   for (var i = 0; i < (size - x); i++) {
     var allIndex = Math.floor(Math.random() * charset.length);
     generated = generated + charset[allIndex];
   }
 
-
-  // // if user wants lowercase letters, add lowercaseLetters
-  // if (lowercase) {
-  //   var lowercaseIndex = Math.floor(Math.random() * lowercaseLetters.length);
-  //   console.log(lowercaseIndex);
-
-  // }
-
-  // // if user does not want an uppercase letter, exclude uppercaseLetters
-  // if (!uppercase) {
-  //   var charCombined = charCombined.filter(el => !uppercaseLetters.includes(el));
-  // }
-
-
-  // // if user chooses to include a number, choose a random number
-  // if (!numeric) {
-  //   var charCombined = charCombined.filter(el => !numericCharacters.includes(el));
-  // }
-
-
-  // // if user chooses to include a special character, choose a random special character
-  // if (special) {
-  //   var specialIndex = Math.floor(Math.random() * specialCharacters.length);
-  //   generated = generated + specialCharacters[specialIndex];
-  //   //else
-  //   // ....
-
-
-
-  // when each prompt is answered, input should be validated and at least one character must be selected
-
-  // generate a password:
-  //    size: 8 -> ########
-  //    lowercase: if true, at least one character should be a lowercase letter
-  //               if false, all letters should be uppercase
-  //    uppercase: if true, at least one character should be an uppercase letter
-  //               if false, all letters should be lowercase
-  //    numeric:   if true, at least one character should be a number
-  //               if false, no numbers used
-  //    special:   if true, at least one character should be special
-  //               if false, no special characters used
-  //                " !"#$ %& '()*+,-./:;<=>?@[\]^_`{|}~"
-
-
-
-
-
-
-
-
-  // convert (Jason's) generated to a number
-  //  generated = Number.parseInt(generated, 10);
   return generated;
 }
 
