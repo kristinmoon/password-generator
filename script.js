@@ -11,6 +11,7 @@ function writePassword() {
 }
 
 
+
 function generatePassword() {
   // prompt: what is the length?
   var size = window.prompt("How many characters would you like your password to be? Length must be between 8-128 characters.", "8");
@@ -50,7 +51,6 @@ function generatePassword() {
     generatePassword();
   }
 
-
   var numericCharacters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   var specialCharacters = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "^", "_", "{", "|", "}", "~"];
   var uppercaseLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
@@ -58,34 +58,41 @@ function generatePassword() {
   var charCombined = [].concat(numericCharacters, specialCharacters, uppercaseLetters, lowercaseLetters);
 
   var generated = "";
+  var charset = [];
 
-  // creates password of selected length
-  for (var i = 0; i < size; i++) {
-    var allIndex = Math.floor(Math.random() * charCombined.length);
-    generated = generated + charCombined[allIndex];
-  }
-
-  // if user does not want a lowercase letter, exclude lowercaseLetters
-  if (!lowercase) {
-    var charCombined = charCombined.filter(el => !lowercaseLetters.includes(el));
-    console.log(charCombined);
-  }
-
-
-
-  // // if user chooses to include an uppercase letter, choose a random uppercase letter
-  // if (uppercase) {
-  //   var uppercaseIndex = Math.floor(Math.random() * uppercaseLetters.length);
-  //   generated = generated + uppercaseLetters[uppercaseIndex];
+  // // creates password of selected length
+  // for (var i = 0; i < size; i++) {
+  //   var allIndex = Math.floor(Math.random() * charset.length);
+  //   generated = generated + charset[allIndex];
   // }
+
+  //empty charset array
+  while (numericCharacters.length) {
+    var current = numericCharacters.pop();
+    if (!numeric) {
+      continue;
+    }
+    charset.push(current);
+  }
+
+  // // if user wants lowercase letters, add lowercaseLetters
+  // if (lowercase) {
+  //   var lowercaseIndex = Math.floor(Math.random() * lowercaseLetters.length);
+  //   console.log(lowercaseIndex);
+
+  // }
+
+  // // if user does not want an uppercase letter, exclude uppercaseLetters
+  // if (!uppercase) {
+  //   var charCombined = charCombined.filter(el => !uppercaseLetters.includes(el));
+  // }
+
 
   // // if user chooses to include a number, choose a random number
-  // if (numeric) {
-  //   var numericIndex = Math.floor(Math.random() * numericCharacters.length);
-  //   generated = generated + numericCharacters[numericIndex];
-  //   //else
-  //   // ....
+  // if (!numeric) {
+  //   var charCombined = charCombined.filter(el => !numericCharacters.includes(el));
   // }
+
 
   // // if user chooses to include a special character, choose a random special character
   // if (special) {
